@@ -1,10 +1,19 @@
 <ng-container *ngIf='formCourse; else noCourse'>
     <form [formGroup]='formCourse'>
-      <label>Имя</label>
+      <label>Название курса</label>
       <input formControlName='name'>
   
       <label>Описание</label>
       <textarea formControlName='description'></textarea>
+      
+      <h3>Автор курса</h3>
+      <ng-container formGroupName='author'>
+        <label>Фамилия</label>
+        <input formControlName='lastName'>
+
+        <label>Имя</label>
+        <input formControlName='firstName'>
+      </ng-container>
   
       <ng-container formGroupName='sales'>
         <h3>Начало продаж</h3>
@@ -42,8 +51,7 @@
             <option [value]='unit.value'>{{unit.value}}</option>
           </ng-container>
         </select>
-      </div>   
-  
+      </div>  
   
       <h3>Варианты курса</h3>
       <ng-container formArrayName='plans' *ngFor="let plan of getPlans().controls; let i = index">
@@ -70,8 +78,7 @@
       <ng-container formArrayName='contents' *ngFor="let content of getContents().controls; let i = index">
         <div class='block d-flex flex-column' [formGroupName]='i'>
           <label>Название</label>
-          <input formControlName='name'>
-  
+          <input formControlName='name'>  
           <label>Тип курса</label>
           <select formControlName='type'>
             <option value=''>Не выбрано</option>

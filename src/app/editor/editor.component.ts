@@ -58,7 +58,7 @@ export class EditorComponent implements OnInit {
     this.formCourse = this.fb.group({
       name,
       description,
-      author,
+      author: this.fb.group({firstName: author.firstName, lastName: author.lastName}),
       sales: this.fb.group({
         startDate: sales?.start?.toISOString().substring(0, 10) || null,
         startTime: sales?.start?.toLocaleTimeString() || null,
