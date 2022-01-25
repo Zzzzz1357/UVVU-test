@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { DataService } from './services/data/data.service';
 
 @Component({
@@ -7,9 +8,11 @@ import { DataService } from './services/data/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  courses$ = this.dataService.courses$;
+
   constructor(
     private readonly dataService:DataService
   ) {}
-  courses$ = this.dataService.courses$;
 
 }

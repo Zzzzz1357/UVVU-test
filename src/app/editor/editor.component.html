@@ -1,0 +1,104 @@
+<ng-container *ngIf='formCourse; else noCourse'>
+    <form [formGroup]='formCourse'>
+      <label>Имя</label>
+      <input formControlName='name'>
+  
+      <label>Описание</label>
+      <textarea formControlName='description'></textarea>
+  
+      <ng-container formGroupName='sales'>
+        <h3>Начало продаж</h3>
+          <div class='d-flex'>
+          <label class='w-50'>Дата<input type='date' formControlName='startDate'></label>
+          <label class='w-50'>Время<input type='time' formControlName='startTime'></label>
+        </div>    
+  
+        <label>Окончание продаж</label>
+        <div class='d-flex'>
+          <label class='w-50'>Дата<input type='date' formControlName='endDate'></label>
+          <label class='w-50'>Время<input type='time' formControlName='endTime'></label>
+        </div>
+      </ng-container>
+      
+  
+      <h3>Соавторы курса</h3>
+      <ng-container formArrayName='coauthors' *ngFor="let coauthor of getCoauthors().controls; let i = index">
+        <div class='block d-flex flex-column' [formGroupName]='i'>
+          <label>Фамилия</label>
+          <input formControlName='lastName'>
+  
+          <label>Имя</label>
+          <input formControlName='firstName'>
+        </div>
+      </ng-container>
+      <button (click)="addCoauthors()">Добавить соавтора</button>
+  
+      <h3>Продолжительность курса</h3>
+      <div class='duration' formGroupName='duration'>
+        <input formControlName='value'>
+        <select formControlName='unit'>
+          <option value=''>Не выбрано</option>
+          <ng-container *ngFor="let unit of durationUnit | keyvalue">
+            <option [value]='unit.value'>{{unit.value}}</option>
+          </ng-container>
+        </select>
+      </div>   
+  
+  
+      <h3>Варианты курса</h3>
+      <ng-container formArrayName='plans' *ngFor="let plan of getPlans().controls; let i = index">
+        <div class='block d-flex flex-column' [formGroupName]='i'>
+          <label>Название</label>
+          <input formControlName='name'>
+  
+          <label>Цена, руб</label>
+          <input formControlName='price'>
+  
+          <label>Преимущества</label>
+          <div formArrayName='advantages' *ngFor="let advantage of plan.get('advantages')?.value; let j = index">
+            <div [formGroupName]='j'>
+              <label>Активен<input type="checkbox" formControlName='available'></label>
+              <label>Название<input formControlName='title'></label>
+            </div>            
+          </div>
+          <button (click)="addAdvantages(i)">Добавить преимущество</button> 
+        </div>
+      </ng-container>
+      <button (click)="addPlans()">Добавить вариант</button>
+  
+      <h3>Содержание курса</h3>
+      <ng-container formArrayName='contents' *ngFor="let content of getContents().controls; let i = index">
+        <div class='block d-flex flex-column' [formGroupName]='i'>
+          <label>Название</label>
+          <input formControlName='name'>
+  
+          <label>Тип курса</label>
+          <select formControlName='type'>
+            <option value=''>Не выбрано</option>
+            <ng-container *ngFor="let itemType of contentsItemTypes | keyvalue">
+              <option [value]='itemType.value'>{{itemType.value}}</option>
+            </ng-container>
+          </select>
+  
+          <label>Продолжительность курса</label>
+          <div class='duration' formGroupName='duration'>
+            <input formControlName='value'>
+            <select formControlName='unit'>
+              <option value=''>Не выбрано</option>
+              <ng-container *ngFor="let unit of durationUnit | keyvalue">
+                <option [value]='unit.value'>{{unit.value}}</option>
+              </ng-container>
+            </select>
+          </div>        
+        </div>
+      </ng-container>    
+      <button (click)="addContents()">Добавить контент</button>
+    </form>
+  </ng-container>
+
+  <ng-template #noCourse>
+    <p>Не существует курса с таким ID</p>
+  </ng-template>
+
+  <h3 routerLink="/">Вернуться на главную</h3>
+

@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+label {
+    margin: 0.5rem 0;
+    min-width: 200px;
+    input {
+        margin-left: 0.5rem;
+    }
+}
+
+.block {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {    
+    flex-direction: column;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.w-50 {
+    width: 50%;
+}
