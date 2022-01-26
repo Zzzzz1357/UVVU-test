@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { combineLatest, Subscription } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
-import { ContentsItemType } from '../models/contents-item-type.enum';
-import { Course } from '../models/course.model';
-import { DurationUnit } from '../models/duration-unit.enum';
+import { ContentsItemType, Course, DurationUnit } from '../models';
 import { DataService } from '../services/data/data.service';
 
 @Component({

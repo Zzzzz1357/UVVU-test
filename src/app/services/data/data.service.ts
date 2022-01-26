@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ContentsItemType } from 'src/app/models/contents-item-type.enum';
-import { Course } from 'src/app/models/course.model';
-import { DurationUnit } from 'src/app/models/duration-unit.enum';
-import { randomString } from 'src/app/utils/random-string.function';
+
+import { ContentsItemType, Course, DurationUnit } from '../../models';
+import { randomString } from '../../utils/random-string.function';
 
 @Injectable({
   providedIn: 'root'
