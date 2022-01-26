@@ -50,7 +50,6 @@ export class EditorComponent implements OnInit {
   }
 
   createForm(course: Course) {
-    console.log(course);
     const { name, description, author, contents, plans, sales, coauthors, duration } = course
 
     this.formCourse = this.fb.group({
@@ -123,8 +122,10 @@ export class EditorComponent implements OnInit {
   addContents(): void {
     this.getContents().push(this.fb.group({
       type: ContentsItemType.lesson,
-      durationUnit: DurationUnit.day,
-      durationValue: 0,
+      duration: this.fb.group({
+        unit: DurationUnit.day,
+        value: 0,
+      }),      
       name: ''
     }))
   }
@@ -155,7 +156,7 @@ export class EditorComponent implements OnInit {
     const dateArray = yearMonthDay.split('-');
     const timeArray = time.split(':');
     const year = +dateArray[0];
-    const month = +dateArray[1];
+    const month = +dateArray[1] - 1;
     const date = +dateArray[2];
     const hours = +timeArray[0];
     const minutes = +timeArray[1];
