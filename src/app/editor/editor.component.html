@@ -63,7 +63,7 @@
           <input formControlName='price'>
   
           <label>Преимущества</label>
-          <div formArrayName='advantages' *ngFor="let advantage of plan.get('advantages')?.value; let j = index">
+          <div formArrayName='advantages' *ngFor="let advantage of getAdvantages(i).controls; let j = index">
             <div [formGroupName]='j'>
               <label>Активен<input type="checkbox" formControlName='available'></label>
               <label>Название<input formControlName='title'></label>

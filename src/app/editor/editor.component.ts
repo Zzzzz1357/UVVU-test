@@ -106,10 +106,13 @@ export class EditorComponent implements OnInit {
     }))
   }
 
-  addAdvantages(i: number): void {
+  getAdvantages(i: number): FormArray {
     const currentPlan = this.getPlans().controls[i] as FormGroup;
-    const advantages = currentPlan.controls['advantages'] as FormArray;
-    advantages.push(this.fb.group({
+    return currentPlan.controls['advantages'] as FormArray;
+  }
+
+  addAdvantages(i: number): void {
+    this.getAdvantages(i).push(this.fb.group({
       available: false,
       title: ''
     }));
